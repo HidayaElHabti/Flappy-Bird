@@ -11,14 +11,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double birdYCoord = 0;
+  static double birdYCoord = 0;
+  double time = 0;
+  double height = 0;
+  double initialHeight = birdYCoord;
+  bool gameHasStarted = false;
   void jump() {
+    setState(() {
+      time = 0;
+      initialHeight = birdYCoord;
+    });
+  }
+
+  void startGame() {
+    gameHasStarted = true;
     Timer.periodic(
-      Duration(milliseconds: 100),
+      const Duration(milliseconds: 70),
       (timer) {
+        time += 0.05;
+        height = (-4.9 * time * time) + (2.8 * time);
         setState(() {
-          birdYCoord -= 0.1;
+          birdYCoord = initialHeight - height;
         });
+        if (birdYCoord > 1) {
+          timer.cancel();
+          gameHasStarted = false;
+        }
       },
     );
   }
@@ -31,7 +49,13 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 2,
             child: GestureDetector(
-              onTap: jump,
+              onTap: () {
+                if (gameHasStarted) {
+                  jump();
+                } else {
+                  startGame();
+                }
+              },
               child: AnimatedContainer(
                 alignment: Alignment(0, birdYCoord),
                 duration: Duration(milliseconds: 300),
