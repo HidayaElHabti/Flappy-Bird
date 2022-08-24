@@ -64,8 +64,59 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          Container(
+            height: 15,
+            color: Colors.green,
+          ),
           Expanded(
-            child: Container(color: Colors.green),
+            child: Container(
+              color: Colors.brown,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "SCORE",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        "0",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "BEST",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        "0",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
